@@ -49,9 +49,7 @@ public class DelimiterWriter extends AbstractWriter {
         String stringValue = toString(value);
 
         final boolean foundQualifier = qualifier != FPConstants.NO_QUALIFIER && stringValue.indexOf(qualifier) != -1;
-        final boolean needsQuoting = stringValue.indexOf(delimiter) != -1 //
-                || foundQualifier //
-                || stringValue.indexOf('\n') != -1;
+        final boolean needsQuoting = foundQualifier && (stringValue.indexOf(delimiter) != -1 || stringValue.indexOf('\n') != -1);
 
         if (needsQuoting) {
             super.write(qualifier);
